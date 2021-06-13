@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ridershub/views/colors.dart';
+import 'package:ridershub/views/status.dart';
 
 import 'views/auth/login.dart';
 
@@ -16,14 +18,16 @@ class MyApp extends StatelessWidget {
       DeviceOrientation.portraitDown,
     ]);
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'RidersHub',
+      theme: ThemeData(
+          fontFamily: 'ProximaNova', scaffoldBackgroundColor: SCAFFOLD_BG),
       builder: (context, child) {
         return ScrollConfiguration(
           behavior: MyBehavior(),
           child: child,
         );
       },
-      home: Login(),
+      home: StatusPage(),
     );
   }
 }
