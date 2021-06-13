@@ -103,3 +103,6 @@ const testImage3 =
 
 const testImage4 =
     "https://images.pexels.com/photos/1042143/pexels-photo-1042143.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500";
+
+// RIDERSHUB SPECIFIC
+const Color APP_BELL = Color(0xff514CDE);

@@ -20,6 +20,7 @@ class _StatusMapState extends State<StatusMap> {
   Widget build(BuildContext context) {
     return GoogleMap(
       mapType: MapType.normal,
+      indoorViewEnabled: true,
       initialCameraPosition: _kGooglePlex,
       onMapCreated: (GoogleMapController controller) {
         _controller.complete(controller);
