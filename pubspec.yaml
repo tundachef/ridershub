@@ -33,6 +33,7 @@ dependencies:
   flutter_native_splash: 
   google_maps_place_picker:
   google_maps_flutter:
+  location: 
 
 dev_dependencies:
   flutter_test:
