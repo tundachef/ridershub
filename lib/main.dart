@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:ridershub/views/colors.dart';
+import 'package:ridershub/views/history.dart';
+import 'package:ridershub/views/orders.dart';
 import 'package:ridershub/views/status.dart';
 
 import 'views/auth/login.dart';
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
           child: child,
         );
       },
-      home: Login(),
+      home: OrdersPage(),
     );
   }
 }

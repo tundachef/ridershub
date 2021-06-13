@@ -5,7 +5,7 @@ import 'package:location/location.dart';
 import 'package:ridershub/views/widgets/statusMap.dart';
 
 import 'colors.dart';
-import 'widgets/statusAppBar.dart';
+import 'widgets/app_bars.dart';
 
 class StatusPage extends StatefulWidget {
   const StatusPage({Key key}) : super(key: key);
@@ -65,7 +65,7 @@ class _StatusPageState extends State<StatusPage> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return CupertinoActivityIndicator();
                   }
-                  return StatusMap(_locationData);
+                  return StatusMap();
                 },
               ),
             ),

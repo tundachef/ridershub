@@ -7,8 +7,8 @@ import 'dart:async';
 import 'package:ridershub/views/colors.dart';
 
 class StatusMap extends StatefulWidget {
-  const StatusMap(this.location, {Key key}) : super(key: key);
-  final LocationData location;
+  const StatusMap({Key key}) : super(key: key);
+  // final LocationData location;
 
   @override
   _StatusMapState createState() => _StatusMapState();
@@ -38,7 +38,7 @@ class _StatusMapState extends State<StatusMap> {
   @override
   void initState() {
     super.initState();
-    _locationData = widget.location;
+    // _locationData = widget.location;
   }
 
   @override
