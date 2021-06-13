@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           child: child,
         );
       },
-      home: StatusPage(),
+      home: Login(),
     );
   }
 }

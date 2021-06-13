@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ridershub/views/colors.dart';
+import 'package:ridershub/views/status.dart';
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -126,12 +128,18 @@ class _LoginState extends State<Login> {
                               hintStyle:
                                   normalTextStyle.copyWith(color: REAL_WHITE))),
                     ),
-                    normalButtonWithBorder(
-                        v16: v16,
-                        borderColor: REAL_WHITE,
-                        bgColor: APP_PRIMARY,
-                        borderRadius: v16 * 2,
-                        title: "Login")
+                    InkWell(
+                      onTap: () => Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => StatusPage())),
+                      child: normalButtonWithBorder(
+                          v16: v16,
+                          borderColor: REAL_WHITE,
+                          bgColor: APP_PRIMARY,
+                          borderRadius: v16 * 2,
+                          title: "Login"),
+                    )
                   ],
                 ),
               ),
