@@ -232,3 +232,54 @@ PreferredSize orderAppBar(
     ),
   );
 }
+
+PreferredSize chatAppBar(
+    {@required double width,
+    @required double v16,
+    @required BuildContext context}) {
+  return PreferredSize(
+    preferredSize: Size(width, 56),
+    child: Material(
+      elevation: 4,
+      child: Container(
+        decoration: BoxDecoration(color: REAL_WHITE),
+        padding: EdgeInsets.only(
+            top: v16 * 2.25, left: v16 / 2, right: v16 / 2, bottom: v16 * 0.75),
+        width: width,
+        child: Theme(
+          data: Theme.of(context).copyWith(primaryColor: APP_PRIMARY),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Icon(
+                    Icons.menu,
+                    size: 24,
+                    color: APP_GREY,
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: v16 / 2),
+                    child: Text(
+                      "CHAT",
+                      style: titleTextStyle.copyWith(
+                          fontSize: 17, color: APP_GREY),
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                child: Text(
+                  "Chat Support",
+                  style: normalTextStyle.copyWith(fontSize: 15),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+}

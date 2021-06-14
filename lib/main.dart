@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:ridershub/views/chats.dart';
 import 'package:ridershub/views/colors.dart';
 import 'package:ridershub/views/history.dart';
 import 'package:ridershub/views/orders.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
           child: child,
         );
       },
-      home: OrdersPage(),
+      home: ChatsPage(),
     );
   }
 }
