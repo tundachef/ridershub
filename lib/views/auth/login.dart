@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
 import 'package:ridershub/views/colors.dart';
+import 'package:ridershub/views/index.dart';
 import 'package:ridershub/views/status.dart';
 
 class Login extends StatefulWidget {
@@ -12,6 +14,38 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool _obscure = true;
+  PermissionStatus _permissionGranted;
+  LocationData _locationData;
+  Location location = new Location();
+
+  bool _serviceEnabled;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkLocationPermission();
+  }
+
+  _checkLocationPermission() async {
+    _serviceEnabled = await location.serviceEnabled();
+    if (!_serviceEnabled) {
+      _serviceEnabled = await location.requestService();
+      if (!_serviceEnabled) {
+        return;
+      }
+    }
+
+    _permissionGranted = await location.hasPermission();
+    if (_permissionGranted == PermissionStatus.denied) {
+      _permissionGranted = await location.requestPermission();
+      if (_permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    _locationData = await location.getLocation();
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -129,10 +163,8 @@ class _LoginState extends State<Login> {
                                   normalTextStyle.copyWith(color: REAL_WHITE))),
                     ),
                     InkWell(
-                      onTap: () => Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                              builder: (context) => StatusPage())),
+                      onTap: () => Navigator.push(context,
+                          CupertinoPageRoute(builder: (context) => Index())),
                       child: normalButtonWithBorder(
                           v16: v16,
                           borderColor: REAL_WHITE,

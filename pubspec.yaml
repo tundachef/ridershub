@@ -32,7 +32,7 @@ dependencies:
   # SPLASH SCREEN
   flutter_native_splash: 
   google_maps_place_picker:
-  google_maps_flutter:
+  google_maps_flutter: ^1.2.0 
   location: 
   expandable: 
 
