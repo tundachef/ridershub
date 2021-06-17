@@ -23,7 +23,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'RidersHub',
       theme: ThemeData(
-          fontFamily: 'ProximaNova', scaffoldBackgroundColor: SCAFFOLD_BG),
+          // fontFamily: 'ProximaNova',
+          scaffoldBackgroundColor: SCAFFOLD_BG),
       builder: (context, child) {
         return ScrollConfiguration(
           behavior: MyBehavior(),

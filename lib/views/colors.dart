@@ -65,12 +65,14 @@ Container normalButtonWithBorder(
     @required Color bgColor,
     @required Color borderColor,
     double borderRadius = 8,
+    BoxShadow boxShadow,
     double borderWidth = 2,
     @required String title}) {
   return Container(
     padding: EdgeInsets.symmetric(vertical: v16, horizontal: v16 * 2),
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(borderRadius),
+      boxShadow: [boxShadow],
       border: Border.all(
           color: borderColor, width: borderWidth, style: BorderStyle.solid),
       color: bgColor,
@@ -106,3 +108,17 @@ const testImage4 =
 
 // RIDERSHUB SPECIFIC
 const Color APP_BELL = Color(0xff514CDE);
+const Color LOGIN_FIELD = Color(0xff527C93);
+
+BoxShadow LIGHT_BOXSHADOW = BoxShadow(
+    color: REAL_BLACK.withOpacity(0.25),
+    offset: Offset(0, 2),
+    // spreadRadius: 1.2,
+    blurRadius: 4);
+
+BoxShadow DARK_BOXSHADOW = BoxShadow(
+  color: REAL_WHITE.withAlpha(95),
+  offset: Offset(0, 2),
+  spreadRadius: 1.2,
+  // blurRadius: 1.4
+);

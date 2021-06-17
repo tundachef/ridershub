@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:ridershub/views/widgets/statusMap.dart';
 
+import '../lab3.dart';
 import 'colors.dart';
 import 'widgets/app_bars.dart';
 
@@ -34,7 +35,7 @@ class _StatusPageState extends State<StatusPage> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return CupertinoActivityIndicator();
                   }
-                  return StatusMap();
+                  return MapPage();
                 },
               ),
             ),
@@ -50,38 +51,31 @@ class _StatusPageState extends State<StatusPage> {
                       margin: EdgeInsets.only(bottom: v16 / 2),
                       child: Row(
                         children: <Widget>[
-                          Material(
-                            elevation: 2.8,
-                            borderRadius: BorderRadius.circular(v16 * 0.9),
-                            child: Container(
-                              width: v16 * 1.8,
-                              height: v16 * 1.8,
-                              decoration: BoxDecoration(
-                                color: APP_BELL,
-                                borderRadius: BorderRadius.circular(v16 * 0.9),
-                              ),
-                              child: Icon(
-                                EvaIcons.bellOutline,
-                                size: v16 * 1.2,
-                                color: REAL_WHITE,
-                              ),
+                          Container(
+                            width: v16 * 1.8,
+                            height: v16 * 1.8,
+                            decoration: BoxDecoration(
+                              color: APP_BELL,
+                              borderRadius: BorderRadius.circular(v16 * 0.9),
+                            ),
+                            child: Icon(
+                              EvaIcons.bellOutline,
+                              size: v16 * 1.2,
+                              color: REAL_WHITE,
                             ),
                           ),
                           Container(
                             margin: EdgeInsets.only(left: v16 / 2),
-                            child: Material(
-                              elevation: 2.8,
-                              borderRadius: BorderRadius.circular(8),
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: v16, vertical: v16 / 2),
-                                decoration: BoxDecoration(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: v16, vertical: v16 / 2),
+                              decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Text(
-                                  "New Salalah Zone",
-                                  style: normalTextStyle,
-                                ),
+                                  color: REAL_WHITE,
+                                  boxShadow: [LIGHT_BOXSHADOW]),
+                              child: Text(
+                                "New Salalah Zone",
+                                style: normalTextStyle,
                               ),
                             ),
                           ),
@@ -90,20 +84,17 @@ class _StatusPageState extends State<StatusPage> {
                     ),
                     Container(
                       // margin: EdgeInsets.only(left: v16),
-                      child: Material(
-                        elevation: 2.8,
-                        borderRadius: BorderRadius.circular(8),
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: v16, vertical: v16 / 2),
-                          decoration: BoxDecoration(
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: v16, vertical: v16 / 2),
+                        decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Text(
-                            "You are scheduled to drive from 10:00 to 17:00",
-                            maxLines: 3,
-                            style: normalTextStyle.copyWith(color: APP_GREY),
-                          ),
+                            color: REAL_WHITE,
+                            boxShadow: [LIGHT_BOXSHADOW]),
+                        child: Text(
+                          "You are scheduled to drive from 10:00 to 17:00",
+                          maxLines: 3,
+                          style: normalTextStyle.copyWith(color: APP_GREY),
                         ),
                       ),
                     ),
@@ -112,45 +103,38 @@ class _StatusPageState extends State<StatusPage> {
               ),
             ),
             Positioned(
-              bottom: v16 * 3,
+              bottom: v16 * 3.5,
               left: v16,
               right: v16,
-              child: Material(
-                elevation: 2.8,
-                borderRadius: BorderRadius.circular(8),
-                child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: v16, vertical: v16),
-                  decoration: BoxDecoration(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: v16, vertical: v16),
+                decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Text(
-                    "Salalah St. Taymoor 956 ascsdf sdsdvdfdfk sfj sdjj ",
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                    style: normalTextStyle.copyWith(color: APP_GREY),
-                  ),
+                    color: REAL_WHITE,
+                    boxShadow: [LIGHT_BOXSHADOW]),
+                child: Text(
+                  "Salalah St. Taymoor 956",
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: normalTextStyle.copyWith(color: APP_GREY),
                 ),
               ),
             ),
             Positioned(
-                bottom: v16 * 1.5,
-                left: width / 3,
-                child: Material(
-                  elevation: 3,
-                  borderRadius: BorderRadius.circular(8),
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                        vertical: v16 / 2, horizontal: v16),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: APP_PRIMARY,
-                    ),
-                    child: Center(
-                        child: Text(
-                      "Ride Now",
-                      style: normalTextStyle.copyWith(color: REAL_WHITE),
-                    )),
+                bottom: v16 * 1,
+                left: width / 2.8,
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: v16, horizontal: v16),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [LIGHT_BOXSHADOW],
+                    color: APP_PRIMARY,
                   ),
+                  child: Center(
+                      child: Text(
+                    "Ride Now",
+                    style: normalTextStyle.copyWith(color: REAL_WHITE),
+                  )),
                 )),
           ],
         ),

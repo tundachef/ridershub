@@ -64,23 +64,39 @@ class _IndexState extends State<Index>
             type: BottomNavigationBarType.fixed,
             showUnselectedLabels: true,
             items: <BottomNavigationBarItem>[
+              // BottomNavigationBarItem(
+              //     icon: Icon(
+              //       EvaIcons.activityOutline,
+              //     ),
+              //     label: "Status"),
               BottomNavigationBarItem(
-                  icon: Icon(
-                    EvaIcons.activityOutline,
+                  icon:
+                      Image.asset("assets/images/bottom_nav/status_empty.png"),
+                  activeIcon: Image.asset(
+                    "assets/images/bottom_nav/status_selected.png",
                   ),
                   label: "Status"),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.assignment_outlined), label: "Orders"),
+                  icon: Image.asset(
+                      "assets/images/bottom_nav/deliveries_empty.png"),
+                  activeIcon: Image.asset(
+                    "assets/images/bottom_nav/deliveries_fill.png",
+                  ),
+                  label: "Orders"),
+
               BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.history,
+                  icon:
+                      Image.asset("assets/images/bottom_nav/history_empty.png"),
+                  activeIcon: Image.asset(
+                    "assets/images/bottom_nav/history_fill.png",
                   ),
                   label: "History"),
               BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.support_agent_outlined,
+                  icon: Image.asset("assets/images/bottom_nav/chat.png"),
+                  activeIcon: Image.asset(
+                    "assets/images/bottom_nav/chat_selected.png",
                   ),
-                  label: "Chats"),
+                  label: "Chat"),
             ],
           ),
           body: Container(

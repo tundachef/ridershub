@@ -56,6 +56,16 @@ flutter:
     - assets/images/splash_img.png
     - assets/images/login_bg.png
     - assets/images/login_logo.png
+    - assets/images/dropdownarrow.png
+    - assets/images/ordershotspot.png
+    - assets/images/bottom_nav/chat.png
+    - assets/images/bottom_nav/chat_selected.png
+    - assets/images/bottom_nav/deliveries_empty.png
+    - assets/images/bottom_nav/deliveries_fill.png
+    - assets/images/bottom_nav/history_empty.png
+    - assets/images/bottom_nav/history_fill.png
+    - assets/images/bottom_nav/status_empty.png
+    - assets/images/bottom_nav/status_selected.png
     
   
 

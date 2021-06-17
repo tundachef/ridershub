@@ -8,7 +8,7 @@ PreferredSize statusAppBar(
     @required double v16,
     @required BuildContext context}) {
   return PreferredSize(
-    preferredSize: Size(width, 56),
+    preferredSize: Size(width, v16 * 3.8),
     child: Material(
       elevation: 4,
       child: Container(
