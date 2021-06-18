@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:ridershub/views/chats.dart';
 import 'package:ridershub/views/history.dart';
 import 'package:ridershub/views/orders.dart';

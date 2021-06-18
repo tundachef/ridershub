@@ -1,3 +1,4 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:ridershub/views/widgets/app_bars.dart';
 
@@ -26,15 +27,54 @@ class _OrdersPageState extends State<OrdersPage> {
           padding: EdgeInsets.only(top: v16),
           children: <Widget>[
             Container(
+              margin: EdgeInsets.only(left: v16 / 2, right: v16 / 2),
+              child: Row(
+                children: <Widget>[
+                  Container(
+                    width: v16 * 1.8,
+                    height: v16 * 1.8,
+                    decoration: BoxDecoration(
+                      color: APP_BELL,
+                      borderRadius: BorderRadius.circular(v16 * 0.9),
+                    ),
+                    child: Icon(
+                      EvaIcons.bellOutline,
+                      size: v16 * 1.2,
+                      color: REAL_WHITE,
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: v16 / 2),
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: v16, vertical: v16 / 2),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: REAL_WHITE,
+                          boxShadow: [LIGHT_BOXSHADOW]),
+                      child: Text(
+                        "New Salalah Zone",
+                        style: normalTextStyle,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // BORDER
+            orderBorder(v16),
+            Container(
               padding: EdgeInsets.symmetric(horizontal: v16 / 2),
               child: Text(
                 "Assigned Orders",
                 style: titleTextStyle,
               ),
             ),
-            historyOrderCard(v16, isOrderPage: true),
-            historyOrderCard(v16, isOrderPage: true),
-            historyOrderCard(v16, isOrderPage: true),
+            orderMoneyCard(v16),
+            orderMoneyCard(v16),
+            orderMoneyCard(v16),
+            // BORDER
+            orderBorder(v16),
             Container(
               padding:
                   EdgeInsets.symmetric(horizontal: v16 / 2, vertical: v16 / 2),
@@ -48,6 +88,15 @@ class _OrdersPageState extends State<OrdersPage> {
             pendingOrderCard(v16),
           ],
         ),
+      ),
+    );
+  }
+
+  Container orderBorder(double v16) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: v16),
+      decoration: BoxDecoration(
+        border: Border(bottom: BorderSide(width: 2, color: DECENT_GREY)),
       ),
     );
   }

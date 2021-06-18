@@ -26,7 +26,7 @@ class _HistoryPageState extends State<HistoryPage> {
           children: <Widget>[
             Container(
               width: width,
-              height: v16 * 4,
+              height: v16 * 4.5,
               padding: EdgeInsets.symmetric(
                 horizontal: 2,
               ),
@@ -55,23 +55,44 @@ class _HistoryPageState extends State<HistoryPage> {
                     children: <Widget>[
                       Container(
                         padding: EdgeInsets.only(right: v16 / 4),
-                        child: Text(
-                          "46.01 km",
-                          style: normalTextStyle.copyWith(fontSize: 14),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Container(
+                              child: Image.asset(
+                                "assets/images/kilometer.png",
+                                width: 24,
+                              ),
+                            ),
+                            Text(
+                              "46.01 km",
+                              style: normalTextStyle.copyWith(fontSize: 14),
+                            ),
+                          ],
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.only(right: v16 / 4),
+                        // padding: EdgeInsets.only(r),
                         child: Text(
                           "|",
                           style: titleTextStyle.copyWith(fontSize: 17),
                         ),
                       ),
                       Container(
-                        child: Text(
-                          "17 OMR",
-                          overflow: TextOverflow.ellipsis,
-                          style: normalTextStyle.copyWith(fontSize: 14),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              child: Image.asset(
+                                "assets/images/cash.png",
+                                width: 24,
+                              ),
+                            ),
+                            Text(
+                              "17 OMR",
+                              overflow: TextOverflow.ellipsis,
+                              style: normalTextStyle.copyWith(fontSize: 14),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -79,9 +100,9 @@ class _HistoryPageState extends State<HistoryPage> {
                 ],
               ),
             ),
-            historyOrderCard(v16),
-            historyOrderCard(v16),
-            historyOrderCard(v16),
+            historyMoneyCard(v16),
+            historyCreditCard(v16),
+            historyMoneyCard(v16),
           ],
         ),
       ),
@@ -102,17 +123,17 @@ class _HistoryPageState extends State<HistoryPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Container(
+            alignment: Alignment.centerLeft,
+            padding: EdgeInsets.only(left: 16),
             child: Text(
               title,
-              style: normalTextStyle.copyWith(color: REAL_WHITE, fontSize: 15),
+              style: normalTextStyle.copyWith(color: REAL_WHITE, fontSize: 12),
             ),
           ),
           Container(
             child: Text(
               value,
-              style: titleTextStyle.copyWith(
-                color: REAL_WHITE,
-              ),
+              style: titleTextStyle.copyWith(color: REAL_WHITE, fontSize: 17),
             ),
           )
         ],

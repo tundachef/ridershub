@@ -13,7 +13,7 @@ const Color APP_GREY = Color(0xff757575);
 const Color APP_RED = Color(0xffD83A43);
 const Color APP_GOLD = Color(0xffFEBE01);
 const Color APP_DARK = Color(0xff020A18);
-
+const Color DECENT_GREY = Color(0xffDDDDDD);
 // ranges from 0.0 to 1.0
 // DARKEN
 Color darken(Color color, [double amount = .1]) {

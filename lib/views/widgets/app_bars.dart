@@ -139,10 +139,11 @@ PreferredSize historyAppBar(
                   ),
                   Container(
                     margin: EdgeInsets.only(right: v16 / 2),
-                    child: Icon(
-                      EvaIcons.calendarOutline,
-                      size: 28,
-                      color: APP_PRIMARY,
+                    child: Container(
+                      child: Image.asset(
+                        "assets/images/calendar.png",
+                        width: 24,
+                      ),
                     ),
                   ),
                 ],

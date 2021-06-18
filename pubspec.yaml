@@ -58,6 +58,10 @@ flutter:
     - assets/images/login_logo.png
     - assets/images/dropdownarrow.png
     - assets/images/ordershotspot.png
+    - assets/images/cash.png
+    - assets/images/card.png
+    - assets/images/calendar.png
+    - assets/images/kilometer.png
     - assets/images/bottom_nav/chat.png
     - assets/images/bottom_nav/chat_selected.png
     - assets/images/bottom_nav/deliveries_empty.png

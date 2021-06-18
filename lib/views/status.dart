@@ -1,9 +1,6 @@
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:location/location.dart';
-import 'package:ridershub/views/widgets/statusMap.dart';
-
 import '../lab3.dart';
 import 'colors.dart';
 import 'widgets/app_bars.dart';
@@ -15,9 +12,13 @@ class StatusPage extends StatefulWidget {
   _StatusPageState createState() => _StatusPageState();
 }
 
-class _StatusPageState extends State<StatusPage> {
+class _StatusPageState extends State<StatusPage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     double v16 = width / 20;

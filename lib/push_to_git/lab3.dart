@@ -3,8 +3,7 @@ import 'dart:collection';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
-
-import 'views/colors.dart';
+import 'package:ridershub/views/colors.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
