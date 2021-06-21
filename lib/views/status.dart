@@ -124,22 +124,65 @@ class _StatusPageState extends State<StatusPage>
             Positioned(
                 bottom: v16 * 1,
                 left: width / 2.8,
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: v16, horizontal: v16),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [LIGHT_BOXSHADOW],
-                    color: APP_PRIMARY,
+                child: InkWell(
+                  onTap: () => rideNow(),
+                  child: Container(
+                    padding:
+                        EdgeInsets.symmetric(vertical: v16, horizontal: v16),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [LIGHT_BOXSHADOW],
+                      color: APP_PRIMARY,
+                    ),
+                    child: Center(
+                        child: Text(
+                      "Ride Now",
+                      style: normalTextStyle.copyWith(color: REAL_WHITE),
+                    )),
                   ),
-                  child: Center(
-                      child: Text(
-                    "Ride Now",
-                    style: normalTextStyle.copyWith(color: REAL_WHITE),
-                  )),
                 )),
           ],
         ),
       ),
     );
+  }
+
+  rideNow() {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Center(child: Text('Alert')),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Container(
+                  child: Text(
+                    "message",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.red,
+                    ),
+                  ),
+                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      ElevatedButton(
+                          child: Text('Yes'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          }),
+                      ElevatedButton(
+                          child: Text('No'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          })
+                    ])
+              ],
+            ),
+          );
+        });
   }
 }
