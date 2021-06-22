@@ -70,6 +70,21 @@ flutter:
     - assets/images/bottom_nav/history_fill.png
     - assets/images/bottom_nav/status_empty.png
     - assets/images/bottom_nav/status_selected.png
+    - assets/images/break.png
+    - assets/images/arrowLeft.png
+    - assets/images/arrowRight.png
+    - assets/images/customer.png
+    - assets/images/direction.png
+    - assets/images/directionblack.png
+    - assets/images/drop_down.png
+    - assets/images/duty_options.png
+    - assets/images/extendshift.png
+    - assets/images/left_drawer.png
+    - assets/images/message.png
+    - assets/images/note.png
+    - assets/images/notification.png
+    - assets/images/orderdetails.png
+    - assets/images/restaurant.png
     
   
 

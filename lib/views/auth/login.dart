@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
+import 'package:ridershub/controllers/regionalzoneController.dart';
+import 'package:ridershub/models/regionalzone.dart';
 import 'package:ridershub/views/colors.dart';
 import 'package:ridershub/views/index.dart';
 import 'package:ridershub/views/status.dart';
@@ -17,14 +19,62 @@ class _LoginState extends State<Login> {
   PermissionStatus _permissionGranted;
   LocationData _locationData;
   Location location = new Location();
-
+  Future<List<RegionalZone>> _regionsFuture;
   bool _serviceEnabled;
+  List<RegionalZone> initRegionsList = [];
+  String _regionalZone;
 
   @override
   void initState() {
     super.initState();
     _checkLocationPermission();
+    _regionsFuture = fetchRegionalZones();
   }
+
+  //  CURRENCIES
+  DropdownButton<String> androidDropdown(List<RegionalZone> regionalList) {
+    List<DropdownMenuItem<String>> dropdownItems = [];
+    for (RegionalZone row in regionalList) {
+      var newItem = DropdownMenuItem<String>(
+        child: Text(
+          row.title_ar,
+          style: normalTextStyle,
+        ),
+        value: row.id,
+      );
+      dropdownItems.add(newItem);
+    }
+
+    return DropdownButton<String>(
+      value: _regionalZone,
+      isExpanded: true,
+      items: dropdownItems,
+      onChanged: (value) {
+        setState(() {
+          _regionalZone = value;
+        });
+      },
+    );
+  }
+
+  // CupertinoPicker iOSPicker() {
+  //   List<Text> pickerItems = [];
+  //   for (Country row in countryList) {
+  //     pickerItems.add(Text(currency));
+  //   }
+
+  //   return CupertinoPicker(
+  //     backgroundColor: Colors.lightBlue,
+  //     itemExtent: 32.0,
+  //     onSelectedItemChanged: (selectedIndex) {
+  //       setState(() {
+  //         selectedCurrency = currenciesList[selectedIndex];
+  //         _currencyController.text = selectedCurrency;
+  //       });
+  //     },
+  //     children: pickerItems,
+  //   );
+  // }
 
   _checkLocationPermission() async {
     _serviceEnabled = await location.serviceEnabled();
@@ -142,39 +192,64 @@ class _LoginState extends State<Login> {
                             hintStyle:
                                 normalTextStyle.copyWith(color: REAL_WHITE))),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(bottom: v16 * 1.5),
-                    padding: EdgeInsets.only(
-                        left: v16,
-                        right: v16 / 3,
-                        bottom: v16 / 8,
-                        top: v16 / 8),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(v16 * 1.6),
-                        color: LOGIN_FIELD),
-                    child: TextField(
-                        style: TextStyle(color: REAL_WHITE),
-                        decoration: InputDecoration(
-                            hintText: "Select Delivery Region",
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                            border: InputBorder.none,
-                            suffixIcon: GestureDetector(
-                              onTap: () {
-                                //
-                              },
-                              child: Container(
-                                padding: EdgeInsets.only(right: 8),
-                                child: Icon(
-                                  Icons.keyboard_arrow_down_rounded,
-                                  // size: 22,
-                                  color: REAL_WHITE,
-                                ),
-                              ),
-                            ),
-                            hintStyle:
-                                normalTextStyle.copyWith(color: REAL_WHITE))),
-                  ),
+                  FutureBuilder<List<RegionalZone>>(
+                      future: _regionsFuture,
+                      builder: (context,
+                          AsyncSnapshot<List<RegionalZone>> snapshot) {
+                        if (snapshot.connectionState == ConnectionState.none ||
+                            snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                          return Center(
+                              child: Padding(
+                            padding: EdgeInsets.all(8),
+                            child: CupertinoActivityIndicator(),
+                          ));
+                        }
+
+                        if (snapshot.data == null) {
+                          return Center(
+                              child: Padding(
+                            padding: EdgeInsets.all(v16),
+                            child: Text(
+                                "No regions retrieved, check your connection"),
+                          ));
+                        }
+                        initRegionsList = snapshot.data;
+                        return androidDropdown(initRegionsList);
+                        // return Container(
+                        //   margin: EdgeInsets.only(bottom: v16 * 1.5),
+                        //   padding: EdgeInsets.only(
+                        //       left: v16,
+                        //       right: v16 / 3,
+                        //       bottom: v16 / 8,
+                        //       top: v16 / 8),
+                        //   decoration: BoxDecoration(
+                        //       borderRadius: BorderRadius.circular(v16 * 1.6),
+                        //       color: LOGIN_FIELD),
+                        //   child: TextField(
+                        //       style: TextStyle(color: REAL_WHITE),
+                        //       decoration: InputDecoration(
+                        //           hintText: "Select Delivery Region",
+                        //           enabledBorder: InputBorder.none,
+                        //           focusedBorder: InputBorder.none,
+                        //           border: InputBorder.none,
+                        //           suffixIcon: GestureDetector(
+                        //             onTap: () {
+                        //               //
+                        //             },
+                        //             child: Container(
+                        //               padding: EdgeInsets.only(right: 8),
+                        //               child: Icon(
+                        //                 Icons.keyboard_arrow_down_rounded,
+                        //                 // size: 22,
+                        //                 color: REAL_WHITE,
+                        //               ),
+                        //             ),
+                        //           ),
+                        //           hintStyle: normalTextStyle.copyWith(
+                        //               color: REAL_WHITE))),
+                        // );
+                      }),
                   InkWell(
                     onTap: () => Navigator.push(context,
                         CupertinoPageRoute(builder: (context) => Index())),
