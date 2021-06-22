@@ -15,6 +15,7 @@ class _IndexState extends State<Index>
     with AutomaticKeepAliveClientMixin<Index> {
   PageController pageController;
   int pageIndex = 0;
+
   final indexKey = new GlobalKey<ScaffoldState>();
 
   @override
@@ -43,6 +44,7 @@ class _IndexState extends State<Index>
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     double v16 = width / 20;
+    double _iconWidth = 36;
     super.build(context);
     return WillPopScope(
         onWillPop: () async => false,
@@ -69,31 +71,44 @@ class _IndexState extends State<Index>
               //     ),
               //     label: "Status"),
               BottomNavigationBarItem(
-                  icon:
-                      Image.asset("assets/images/bottom_nav/status_empty.png"),
+                  icon: Image.asset(
+                    "assets/images/bottom_nav/status_empty.png",
+                    width: _iconWidth,
+                  ),
                   activeIcon: Image.asset(
                     "assets/images/bottom_nav/status_selected.png",
+                    width: _iconWidth,
                   ),
                   label: "Status"),
               BottomNavigationBarItem(
                   icon: Image.asset(
-                      "assets/images/bottom_nav/deliveries_empty.png"),
+                    "assets/images/bottom_nav/deliveries_empty.png",
+                    width: _iconWidth,
+                  ),
                   activeIcon: Image.asset(
                     "assets/images/bottom_nav/deliveries_fill.png",
+                    width: _iconWidth,
                   ),
                   label: "Orders"),
 
               BottomNavigationBarItem(
-                  icon:
-                      Image.asset("assets/images/bottom_nav/history_empty.png"),
+                  icon: Image.asset(
+                    "assets/images/bottom_nav/history_empty.png",
+                    width: _iconWidth,
+                  ),
                   activeIcon: Image.asset(
                     "assets/images/bottom_nav/history_fill.png",
+                    width: _iconWidth,
                   ),
                   label: "History"),
               BottomNavigationBarItem(
-                  icon: Image.asset("assets/images/bottom_nav/chat.png"),
+                  icon: Image.asset(
+                    "assets/images/bottom_nav/chat.png",
+                    width: _iconWidth,
+                  ),
                   activeIcon: Image.asset(
                     "assets/images/bottom_nav/chat_selected.png",
+                    width: _iconWidth,
                   ),
                   label: "Chat"),
             ],

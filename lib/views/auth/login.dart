@@ -37,7 +37,7 @@ class _LoginState extends State<Login> {
     for (RegionalZone row in regionalList) {
       var newItem = DropdownMenuItem<String>(
         child: Text(
-          row.title_ar,
+          row.title,
           style: normalTextStyle,
         ),
         value: row.id,
@@ -48,7 +48,12 @@ class _LoginState extends State<Login> {
     return DropdownButton<String>(
       value: _regionalZone,
       isExpanded: true,
+      underline: Container(),
       items: dropdownItems,
+      style: normalTextStyle.copyWith(color: REAL_WHITE),
+      iconEnabledColor: REAL_WHITE,
+      hint: Text("Select Delivery Region",
+          style: normalTextStyle.copyWith(color: REAL_WHITE)),
       onChanged: (value) {
         setState(() {
           _regionalZone = value;
@@ -57,24 +62,23 @@ class _LoginState extends State<Login> {
     );
   }
 
-  // CupertinoPicker iOSPicker() {
-  //   List<Text> pickerItems = [];
-  //   for (Country row in countryList) {
-  //     pickerItems.add(Text(currency));
-  //   }
+  CupertinoPicker iosPicker(List<RegionalZone> regionalList) {
+    List<Text> pickerItems = [];
+    for (RegionalZone row in regionalList) {
+      pickerItems.add(Text(row.title_ar));
+    }
 
-  //   return CupertinoPicker(
-  //     backgroundColor: Colors.lightBlue,
-  //     itemExtent: 32.0,
-  //     onSelectedItemChanged: (selectedIndex) {
-  //       setState(() {
-  //         selectedCurrency = currenciesList[selectedIndex];
-  //         _currencyController.text = selectedCurrency;
-  //       });
-  //     },
-  //     children: pickerItems,
-  //   );
-  // }
+    return CupertinoPicker(
+      backgroundColor: Colors.lightBlue,
+      itemExtent: 32.0,
+      onSelectedItemChanged: (selectedIndex) {
+        setState(() {
+          _regionalZone = regionalList[selectedIndex].title_ar;
+        });
+      },
+      children: pickerItems,
+    );
+  }
 
   _checkLocationPermission() async {
     _serviceEnabled = await location.serviceEnabled();
@@ -140,7 +144,7 @@ class _LoginState extends State<Login> {
                         // color: REAL_WHITE.withAlpha(95).withOpacity(0.38),
                         color: LOGIN_FIELD),
                     child: TextField(
-                        style: TextStyle(color: REAL_WHITE),
+                        // style: TextStyle(color: REAL_WHITE),
                         decoration: InputDecoration(
                             hintText: "RHID Number",
                             enabledBorder: InputBorder.none,
@@ -160,7 +164,7 @@ class _LoginState extends State<Login> {
                         borderRadius: BorderRadius.circular(v16 * 1.6),
                         color: LOGIN_FIELD),
                     child: TextField(
-                        style: TextStyle(color: REAL_WHITE),
+                        // style: TextStyle(color: REAL_WHITE),
                         obscureText: _obscure,
                         obscuringCharacter: "*",
                         decoration: InputDecoration(
@@ -215,7 +219,18 @@ class _LoginState extends State<Login> {
                           ));
                         }
                         initRegionsList = snapshot.data;
-                        return androidDropdown(initRegionsList);
+                        return Container(
+                            margin: EdgeInsets.only(bottom: v16 * 1.5),
+                            padding: EdgeInsets.only(
+                                left: v16,
+                                right: (v16 / 3) + 8,
+                                bottom: v16 / 8,
+                                top: v16 / 8),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(v16 * 1.6),
+                                color: LOGIN_FIELD),
+                            child: androidDropdown(initRegionsList));
+                        // return iosPicker(initRegionsList);
                         // return Container(
                         //   margin: EdgeInsets.only(bottom: v16 * 1.5),
                         //   padding: EdgeInsets.only(
