@@ -2,6 +2,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:snapping_sheet/snapping_sheet.dart';
 import '../lab3.dart';
 import 'colors.dart';
 import 'widgets/app_bars.dart';
@@ -15,6 +16,7 @@ class StatusPage extends StatefulWidget {
 
 class _StatusPageState extends State<StatusPage>
     with AutomaticKeepAliveClientMixin {
+  bool isAccepted = false, isNotPressed = true;
   @override
   bool get wantKeepAlive => true;
   @override
@@ -25,256 +27,407 @@ class _StatusPageState extends State<StatusPage>
     double v16 = width / 20;
     return Scaffold(
       appBar: statusAppBar(width: width, v16: v16, context: context),
-      body: Container(
-        width: width,
-        height: height,
-        child: Stack(
-          children: <Widget>[
-            Positioned.fill(
-              child: FutureBuilder(
-                future: Future.delayed(Duration(seconds: 2)),
-                builder: (context, AsyncSnapshot snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CupertinoActivityIndicator();
-                  }
-                  return MapPage();
-                },
+      body: SnappingSheet(
+        //  lockOverflowDrag: true,
+        //   snappingPositions: [
+        //     SnappingPosition.factor(
+        //       positionFactor: 0.0,
+        //       snappingCurve: Curves.easeOutExpo,
+        //       snappingDuration: Duration(seconds: 1),
+        //       grabbingContentOffset: GrabbingContentOffset.top,
+        //     ),
+        //     SnappingPosition.factor(
+        //       snappingCurve: Curves.elasticOut,
+        //       snappingDuration: Duration(milliseconds: 1750),
+        //       positionFactor: 0.5,
+        //     ),
+        //     SnappingPosition.factor(
+        //       grabbingContentOffset: GrabbingContentOffset.bottom,
+        //       snappingCurve: Curves.easeInExpo,
+        //       snappingDuration: Duration(seconds: 1),
+        //       positionFactor: 0.9,
+        //     ),
+        //   ],
+        //   grabbing: GrabbingWidget(
+        //       v16: v16,
+        //       previousCurrencyString: _pdt.currency,
+        //       previousPriceString: _pdt.original_price,
+        //       currentCurrencyString: _pdt.currency,
+        //       currentPriceString: _pdt.new_price),
+        //     grabbingHeight: 250,
+        //   sheetAbove: null,
+        //   sheetBelow: SnappingSheetContent(
+        //     draggable: true,
+        //     childScrollController: listViewController,
+        //     child: SheetContent(
+        //       listViewController: listViewController,
+        //       v16: v16,
+        //       flagImageUrl: '$MEDIA_URL${_pdt.country_flag}',
+        //       name: _pdt.seller_name,
+        //       country: _pdt.country_name,
+        //       sellerId: _pdt.seller_id,
+        //       sellerPhone: _pdt.seller_phone,
+        //       profilePicUrl: '$MEDIA_URL${_pdt.seller_image}',
+        //     ),
+        //   ),
+        child: Container(
+          width: width,
+          height: height,
+          child: Stack(
+            children: <Widget>[
+              Positioned.fill(
+                child: FutureBuilder(
+                  future: Future.delayed(Duration(seconds: 2)),
+                  builder: (context, AsyncSnapshot snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CupertinoActivityIndicator();
+                    }
+                    return MapPage();
+                  },
+                ),
               ),
-            ),
-            Positioned(
-              top: v16,
-              left: v16,
-              right: v16,
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.only(bottom: v16 / 2),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            width: v16 * 1.8,
-                            height: v16 * 1.8,
-                            decoration: BoxDecoration(
-                              color: APP_BELL,
-                              borderRadius: BorderRadius.circular(v16 * 0.9),
-                            ),
-                            child: Icon(
-                              EvaIcons.bellOutline,
-                              size: v16 * 1.2,
-                              color: REAL_WHITE,
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(left: v16 / 2),
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: v16, vertical: v16 / 2),
+              Positioned(
+                top: v16,
+                left: v16,
+                right: v16,
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(bottom: v16 / 2),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              width: v16 * 1.8,
+                              height: v16 * 1.8,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: REAL_WHITE,
-                                  boxShadow: [LIGHT_BOXSHADOW]),
-                              child: Text(
-                                "New Salalah Zone",
-                                style: normalTextStyle,
+                                color: APP_BELL,
+                                borderRadius: BorderRadius.circular(v16 * 0.9),
+                              ),
+                              child: Icon(
+                                EvaIcons.bellOutline,
+                                size: v16 * 1.2,
+                                color: REAL_WHITE,
                               ),
                             ),
-                          ),
-                        ],
+                            Container(
+                              margin: EdgeInsets.only(left: v16 / 2),
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: v16, vertical: v16 / 2),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: REAL_WHITE,
+                                    boxShadow: [LIGHT_BOXSHADOW]),
+                                child: Text(
+                                  "New Salalah Zone",
+                                  style: normalTextStyle,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Container(
-                      // margin: EdgeInsets.only(left: v16),
+                      Container(
+                        // margin: EdgeInsets.only(left: v16),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: v16, vertical: v16 / 2),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: REAL_WHITE,
+                              boxShadow: [LIGHT_BOXSHADOW]),
+                          child: Text(
+                            "You are scheduled to drive from 10:00 to 17:00",
+                            maxLines: 3,
+                            style: normalTextStyle.copyWith(color: APP_GREY),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              isNotPressed
+                  ? Positioned(
+                      bottom: v16 * 3.5,
+                      left: v16,
+                      right: v16,
                       child: Container(
                         padding: EdgeInsets.symmetric(
-                            horizontal: v16, vertical: v16 / 2),
+                            horizontal: v16, vertical: v16),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: REAL_WHITE,
                             boxShadow: [LIGHT_BOXSHADOW]),
                         child: Text(
-                          "You are scheduled to drive from 10:00 to 17:00",
-                          maxLines: 3,
+                          "Salalah St. Taymoor 956",
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
                           style: normalTextStyle.copyWith(color: APP_GREY),
                         ),
+                      ),
+                    )
+                  : Container(),
+              isNotPressed
+                  ? Positioned(
+                      bottom: v16 * 1,
+                      left: width / 2.8,
+                      child: InkWell(
+                        onTap: () => openAlertBox(width: width, v16: v16),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                              vertical: v16, horizontal: v16),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [LIGHT_BOXSHADOW],
+                            color: APP_PRIMARY,
+                          ),
+                          child: Center(
+                              child: Text(
+                            "Ride Now",
+                            style: normalTextStyle.copyWith(color: REAL_WHITE),
+                          )),
+                        ),
+                      ))
+                  : isAccepted
+                      ? grabbingWidget(width: width, v16: v16)
+                      : acceptPaymentWidget(width: width, v16: v16),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  grabbingWidget({double width, double v16}) {
+    return Positioned(
+        bottom: 0,
+        child: Container(
+          // height: 300,
+          width: width,
+          padding: EdgeInsets.only(left: v16, right: v16, top: v16 / 2),
+          decoration: BoxDecoration(
+              color: REAL_WHITE,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(6), topRight: Radius.circular(6)),
+              boxShadow: [
+                BoxShadow(
+                    color: REAL_BLACK.withOpacity(0.3),
+                    offset: Offset(0, -2),
+                    spreadRadius: 2,
+                    blurRadius: 2)
+              ]),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    width: v16 * 2,
+                    height: 3,
+                    decoration: BoxDecoration(
+                        color: APP_GREY,
+                        borderRadius: BorderRadius.circular(2)),
+                  ),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: v16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(bottom: 8),
+                      child: Text(
+                        "Snacks \'N\' More - Saada",
+                        style: titleTextStyle,
+                      ),
+                    ),
+                    Container(
+                      child: Text(
+                        "6 items",
+                        style: normalTextStyle,
                       ),
                     ),
                   ],
                 ),
               ),
-            ),
-            // Positioned(
-            //   bottom: v16 * 3.5,
-            //   left: v16,
-            //   right: v16,
-            //   child: Container(
-            //     padding: EdgeInsets.symmetric(horizontal: v16, vertical: v16),
-            //     decoration: BoxDecoration(
-            //         borderRadius: BorderRadius.circular(8),
-            //         color: REAL_WHITE,
-            //         boxShadow: [LIGHT_BOXSHADOW]),
-            //     child: Text(
-            //       "Salalah St. Taymoor 956",
-            //       overflow: TextOverflow.ellipsis,
-            //       maxLines: 2,
-            //       style: normalTextStyle.copyWith(color: APP_GREY),
-            //     ),
-            //   ),
-            // ),
-            // Positioned(
-            //     bottom: v16 * 1,
-            //     left: width / 2.8,
-            //     child: InkWell(
-            //       onTap: () => openAlertBox(width: width, v16: v16),
-            //       child: Container(
-            //         padding:
-            //             EdgeInsets.symmetric(vertical: v16, horizontal: v16),
-            //         decoration: BoxDecoration(
-            //           borderRadius: BorderRadius.circular(20),
-            //           boxShadow: [LIGHT_BOXSHADOW],
-            //           color: APP_PRIMARY,
-            //         ),
-            //         child: Center(
-            //             child: Text(
-            //           "Ride Now",
-            //           style: normalTextStyle.copyWith(color: REAL_WHITE),
-            //         )),
-            //       ),
-            //     )),
-            // Positioned(
-            //     bottom: 0,
-            //     child: Container(
-            //       // height: 300,
-            //       width: width,
-            //       padding: EdgeInsets.only(left: v16, right: v16, top: v16),
-            //       decoration: BoxDecoration(
-            //           color: REAL_WHITE,
-            //           borderRadius: BorderRadius.only(
-            //               topLeft: Radius.circular(6),
-            //               topRight: Radius.circular(6)),
-            //           boxShadow: [
-            //             BoxShadow(
-            //                 color: REAL_BLACK.withOpacity(0.3),
-            //                 offset: Offset(0, -2),
-            //                 spreadRadius: 2,
-            //                 blurRadius: 2)
-            //           ]),
-            //       child: Column(
-            //         children: <Widget>[
-            //           Row(
-            //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //             children: <Widget>[
-            //               Column(
-            //                 mainAxisSize: MainAxisSize.min,
-            //                 crossAxisAlignment: CrossAxisAlignment.start,
-            //                 children: <Widget>[
-            //                   Container(
-            //                     child: Text(
-            //                       "Snacks \'N\' More - Saada",
-            //                       style: titleTextStyle,
-            //                     ),
-            //                   ),
-            //                   Container(
-            //                     child: Text(
-            //                       "6 items",
-            //                       style: normalTextStyle,
-            //                     ),
-            //                   ),
-            //                 ],
-            //               ),
-            //               CircularCountDownTimer(
-            //                 duration: 60,
-            //                 initialDuration: 0,
-            //                 controller: CountDownController(),
-            //                 width: 56,
-            //                 height: 56,
-            //                 ringColor: Colors.grey[300],
-            //                 ringGradient: null,
-            //                 fillColor: APP_PRIMARY,
-            //                 fillGradient: null,
-            //                 backgroundColor: Colors.transparent,
-            //                 backgroundGradient: null,
-            //                 strokeWidth: 4,
-            //                 strokeCap: StrokeCap.square,
-            //                 textStyle:
-            //                     titleTextStyle.copyWith(color: APP_PRIMARY),
-            //                 textFormat: CountdownTextFormat.SS,
-            //                 isReverse: true,
-            //                 isReverseAnimation: true,
-            //                 isTimerTextShown: true,
-            //                 autoStart: true,
-            //                 onStart: () {
-            //                   print('Countdown Started');
-            //                 },
-            //                 onComplete: () {
-            //                   print('Countdown Ended');
-            //                 },
-            //               ),
-            //             ],
-            //           ),
-            //           Container(
-            //             padding:
-            //                 EdgeInsets.only(top: v16 * 0.8, bottom: v16 * 0.6),
-            //             child: Divider(
-            //               color: DECENT_GREY_LIGHT,
-            //               thickness: 1.5,
-            //             ),
-            //           ),
-            //           Container(
-            //             child: Column(
-            //               children: <Widget>[
-            //                 Container(
-            //                   child: Text(
-            //                     "14.5000 OMR",
-            //                     style: titleTextStyle,
-            //                   ),
-            //                 ),
-            //                 Container(
-            //                   child: Text(
-            //                     "Customer's payment",
-            //                     style: normalTextStyle.copyWith(
-            //                         color: APP_GREY, fontSize: 14),
-            //                   ),
-            //                 ),
-            //                 Container(
-            //                   padding: EdgeInsets.symmetric(
-            //                       horizontal: v16, vertical: 8),
-            //                   child: normalButton(
-            //                       borderRadius: v16 * 1.5,
-            //                       v16: v16,
-            //                       bgColor: APP_PRIMARY,
-            //                       title: "Accept"),
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //         ],
-            //       ),
-            //     )),
-             Positioned(
-                bottom: 0,
-                child: Container(
-                  // height: 300,
-                  width: width,
-                  padding: EdgeInsets.only(left: v16, right: v16, top: v16),
-                  decoration: BoxDecoration(
-                      color: REAL_WHITE,
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(6),
-                          topRight: Radius.circular(6)),
-                      boxShadow: [
-                        BoxShadow(
-                            color: REAL_BLACK.withOpacity(0.3),
-                            offset: Offset(0, -2),
-                            spreadRadius: 2,
-                            blurRadius: 2)
-                      ]),
-                  child:)),
-          ],
-        ),
-      ),
-    );
+              Row(
+                children: <Widget>[
+                  Container(
+                    margin: EdgeInsets.only(right: v16),
+                    padding: EdgeInsets.symmetric(
+                        vertical: v16 * 0.6, horizontal: v16 * 2),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(v16 * 2),
+                      color: APP_PRIMARY,
+                    ),
+                    child: Center(
+                        child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Image.asset(
+                          "assets/images/direction.png",
+                          width: 22,
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(left: 4),
+                          child: Text(
+                            "Directions",
+                            style: normalTextStyle.copyWith(color: REAL_WHITE),
+                          ),
+                        ),
+                      ],
+                    )),
+                  ),
+                  CircleAvatar(
+                    backgroundColor: DECENT_GREY,
+                    child: Icon(
+                      Icons.phone,
+                      color: REAL_BLACK,
+                    ),
+                  ),
+                ],
+              ),
+              Container(
+                margin: EdgeInsets.only(top: v16 / 2),
+                child: Text(
+                  "PICK UP AT",
+                  style: titleTextStyle,
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: v16 / 2, bottom: v16),
+                width: v16 * 1.5,
+                height: 3,
+                decoration: BoxDecoration(
+                    color: APP_PRIMARY,
+                    borderRadius: BorderRadius.circular(0.2)),
+              ),
+            ],
+          ),
+        ));
+  }
+
+  acceptPaymentWidget({double width, double v16}) {
+    return Positioned(
+        bottom: 0,
+        child: Container(
+          // height: 300,
+          width: width,
+          padding: EdgeInsets.only(left: v16, right: v16, top: v16),
+          decoration: BoxDecoration(
+              color: REAL_WHITE,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(6), topRight: Radius.circular(6)),
+              boxShadow: [
+                BoxShadow(
+                    color: REAL_BLACK.withOpacity(0.3),
+                    offset: Offset(0, -2),
+                    spreadRadius: 2,
+                    blurRadius: 2)
+              ]),
+          child: Column(
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Container(
+                        child: Text(
+                          "Snacks \'N\' More - Saada",
+                          style: titleTextStyle,
+                        ),
+                      ),
+                      Container(
+                        child: Text(
+                          "6 items",
+                          style: normalTextStyle,
+                        ),
+                      ),
+                    ],
+                  ),
+                  CircularCountDownTimer(
+                    duration: 60,
+                    initialDuration: 0,
+                    controller: CountDownController(),
+                    width: 56,
+                    height: 56,
+                    ringColor: Colors.grey[300],
+                    ringGradient: null,
+                    fillColor: APP_PRIMARY,
+                    fillGradient: null,
+                    backgroundColor: Colors.transparent,
+                    backgroundGradient: null,
+                    strokeWidth: 4,
+                    strokeCap: StrokeCap.square,
+                    textStyle: titleTextStyle.copyWith(color: APP_PRIMARY),
+                    textFormat: CountdownTextFormat.SS,
+                    isReverse: true,
+                    isReverseAnimation: true,
+                    isTimerTextShown: true,
+                    autoStart: true,
+                    onStart: () {
+                      print('Countdown Started');
+                    },
+                    onComplete: () {
+                      print('Countdown Ended');
+                    },
+                  ),
+                ],
+              ),
+              Container(
+                padding: EdgeInsets.only(top: v16 * 0.8, bottom: v16 * 0.6),
+                child: Divider(
+                  color: DECENT_GREY_LIGHT,
+                  thickness: 1.5,
+                ),
+              ),
+              Container(
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      child: Text(
+                        "14.5000 OMR",
+                        style: titleTextStyle,
+                      ),
+                    ),
+                    Container(
+                      child: Text(
+                        "Customer's payment",
+                        style: normalTextStyle.copyWith(
+                            color: APP_GREY, fontSize: 14),
+                      ),
+                    ),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: v16, vertical: 8),
+                      child: InkWell(
+                        onTap: () {
+                          setState(() {
+                            isAccepted = true;
+                          });
+                        },
+                        child: normalButton(
+                            borderRadius: v16 * 1.5,
+                            v16: v16,
+                            bgColor: APP_PRIMARY,
+                            title: "Accept"),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ));
   }
 
   openAlertBox({double width, double v16}) {
@@ -333,19 +486,26 @@ class _StatusPageState extends State<StatusPage>
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Container(
-                        margin: EdgeInsets.only(top: 8, bottom: 12),
-                        padding: EdgeInsets.symmetric(
-                            vertical: v16 / 2, horizontal: v16 * 2),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          color: APP_PRIMARY,
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            isNotPressed = false;
+                          });
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(top: 8, bottom: 12),
+                          padding: EdgeInsets.symmetric(
+                              vertical: v16 / 2, horizontal: v16 * 2),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: APP_PRIMARY,
+                          ),
+                          child: Center(
+                              child: Text(
+                            "Start Riding",
+                            style: normalTextStyle.copyWith(color: REAL_WHITE),
+                          )),
                         ),
-                        child: Center(
-                            child: Text(
-                          "Start Riding",
-                          style: normalTextStyle.copyWith(color: REAL_WHITE),
-                        )),
                       ),
                     ],
                   ),
