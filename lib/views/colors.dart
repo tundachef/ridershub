@@ -14,6 +14,7 @@ const Color APP_RED = Color(0xffD83A43);
 const Color APP_GOLD = Color(0xffFEBE01);
 const Color APP_DARK = Color(0xff020A18);
 const Color DECENT_GREY = Color(0xffDDDDDD);
+const Color DECENT_GREY_LIGHT = Color(0xffECECEC);
 // ranges from 0.0 to 1.0
 // DARKEN
 Color darken(Color color, [double amount = .1]) {
@@ -44,11 +45,14 @@ const TextStyle titleTextStyle =
 
 // BUTTON
 Container normalButton(
-    {@required double v16, @required Color bgColor, @required String title}) {
+    {@required double v16,
+    @required Color bgColor,
+    @required String title,
+    double borderRadius = 8}) {
   return Container(
     padding: EdgeInsets.symmetric(vertical: v16, horizontal: v16 * 2),
     decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(borderRadius),
       color: bgColor,
     ),
     child: Center(

@@ -35,6 +35,8 @@ dependencies:
   google_maps_flutter: ^1.2.0 
   location: 
   expandable: 
+  circular_countdown_timer: 
+  snapping_sheet:
 
 dev_dependencies:
   flutter_test:
